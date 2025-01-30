@@ -50,7 +50,8 @@ a &= \frac{E_2(B-A)}{A-BE_2^2} \\
 
 and under the assumption of lorentz distribution of the off-resonance within the voxel for describing the $T_2'$, the echo signal $S_n$ to be measured is given by
 
-$$S_n(\text{TE}_n) = F_n^+ \underbrace{e^{-\text{TE}_n/T_2}}_{T_2\text{ relaxation}} \underbrace{e^{-\left|\text{TE}_n+n\text{TR}\right|/T_2'}}_{T_2'\text{ relaxation}}\underbrace{e^{j\omega_0(\text{TE}_n+n\text{TR})}}_{\text{off-resonance phase}}$$
+<!-- $$S_n(\text{TE}_n) = F_n^+ \underbrace{e^{-\text{TE}_n/T_2}}_{T_2\text{ relaxation}} \underbrace{e^{-\left|\text{TE}_n+n\text{TR}\right|/T_2'}}_{T_2'\text{ relaxation}}\underbrace{e^{j\omega_0(\text{TE}_n+n\text{TR})}}_{\text{off-resonance phase}}$$ -->
+$$S_n(\text{TE}_n) = F_n^+ e^{-\text{TE}_n/T_2}e^{-\left|\text{TE}_n+n\text{TR}\right|/T_2'}e^{j\omega_0(\text{TE}_n+n\text{TR})}$$
 
 where the $T_2$ and $T_2'$ relaxation terms are multiplied to the transverse magnetization after the RF pulse $F^+$, and the off-resonance phase term corresponds to the phase shift of the $n$-th echo due to the B0 field inhomogeneity.
 
