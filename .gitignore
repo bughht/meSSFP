@@ -1,3 +1,4 @@
 tmp.seq
 seq/*.seq
 phantom/*
+__pycache__

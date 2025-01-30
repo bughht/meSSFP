@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # @title Define SSFP in PyPulseq
 # %% S2. DEFINE the sequence
 
-FAex =30  #@param {type: "slider", min: 1, max: 180}
+FAex =35  #@param {type: "slider", min: 1, max: 180}
 P_alpha_half= True #@param {type: "boolean"}
 TR_ms =  0 #@param {type: "slider", min: 0.0, max: 20, step:0.1}
 TR=TR_ms*1e-3
@@ -135,5 +135,5 @@ seq.set_definition('FOV', [fov, fov, slice_thickness])
 seq.write('seq/ubSSFP_1.33.seq')
 
 
-seq.plot(time_range=[0, 0.1])
-plt.show()
+# seq.plot(time_range=[0, 0.1])
+# plt.show()

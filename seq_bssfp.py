@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # @title Define SSFP in PyPulseq
 # %% S2. DEFINE the sequence
 
-FAex =30  #@param {type: "slider", min: 1, max: 180}
+FAex =35  #@param {type: "slider", min: 1, max: 180}
 P_alpha_half= True #@param {type: "boolean"}
 TR_ms =  0 #@param {type: "slider", min: 0.0, max: 20, step:0.1}
 TR=TR_ms*1e-3
@@ -108,7 +108,8 @@ for ii in range(0, Nphase):  # e.g. -64:63
     seq.add_block(gx_pre, gp,gzr1)
     seq.add_block(adc, gx)
     gp = pp.make_trapezoid(channel='y', area=-phenc_centr[ii], duration=min_gr_dur, system=system)
-    seq.add_block(gx_pre, gp,gzr1)  #  balance Gz!
+    # seq.add_block(gx_pre, gp,gzr1)  #  balance Gz!
+    seq.add_block(*pp.align(right=[gx_pre, gp, gzr1]))
     seq.add_block(pp.make_delay(TRd))
     # full pulse            delay of rf2 -ringdown rf1  + TR_delay + RO/2
 #%% S3. CHECK, PLOT and WRITE the sequence  as .seq
@@ -128,5 +129,5 @@ seq.set_definition('FOV', [fov, fov, slice_thickness])
 seq.write('seq/bSSFP.seq')
 
 
-seq.plot()
-plt.show()
+# seq.plot()
+# plt.show()
