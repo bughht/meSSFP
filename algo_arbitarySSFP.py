@@ -136,7 +136,7 @@ def EPG_plot(start_echo, end_echo, ascend=None, balance=False, spoiler_portion=0
     plt.axhline(y=0, color='k', linestyle='--')
     plt.axvline(x=-1, color='k', linestyle=':')
     plt.axvline(x=t_list[-1], color='k', linestyle=':')
-    plt.xlim(-2.1, t_list[-1]+2.1)
+    plt.xlim(-2.1, t_list[-1]+1.1)
     plt.text(-3.5, 0, "RF", fontsize=20, verticalalignment='bottom',
              horizontalalignment='left')
     plt.axis('off')
@@ -149,7 +149,7 @@ def EPG_plot(start_echo, end_echo, ascend=None, balance=False, spoiler_portion=0
     plt.axhline(y=0, color='k', linestyle='--')
     plt.axvline(x=-1, color='k', linestyle=':')
     plt.axvline(x=t_list[-1], color='k', linestyle=':')
-    plt.xlim(-2.1, t_list[-1]+2.1)
+    plt.xlim(-2.1, t_list[-1]+1.1)
     plt.ylim(-5, 5)
     plt.text(-3.5, 0, "Gss", fontsize=20, verticalalignment='bottom',
              horizontalalignment='left')
@@ -166,7 +166,7 @@ def EPG_plot(start_echo, end_echo, ascend=None, balance=False, spoiler_portion=0
     plt.axhline(y=0, color='k', linestyle='--')
     plt.axvline(x=-1, color='k', linestyle=':')
     plt.axvline(x=t_list[-1], color='k', linestyle=':')
-    plt.xlim(-2.1, t_list[-1]+2.1)
+    plt.xlim(-2.1, t_list[-1]+1.1)
     plt.ylim(-5, 5)
     plt.text(-3.5, 0, "Gpe", fontsize=20, verticalalignment='bottom',
              horizontalalignment='left')
@@ -175,7 +175,7 @@ def EPG_plot(start_echo, end_echo, ascend=None, balance=False, spoiler_portion=0
     subplot_id("RO")
     plt.axvline(x=-1, color='k', linestyle=':')
     plt.axvline(x=t_list[-1], color='k', linestyle=':')
-    plt.xlim(-2.1, t_list[-1]+2.1)
+    plt.xlim(-2.1, t_list[-1]+1.1)
     plt.text(-3.5, 0, "Gro", fontsize=20, verticalalignment='bottom',
              horizontalalignment='left')
     plt.axis('off')
@@ -183,7 +183,7 @@ def EPG_plot(start_echo, end_echo, ascend=None, balance=False, spoiler_portion=0
     subplot_id("EPG")
     plt.axvline(x=-1, color='k', linestyle=':')
     plt.axvline(x=t_list[-1], color='k', linestyle=':')
-    plt.xlim(-2.1, t_list[-1]+2.1)
+    plt.xlim(-2.1, t_list[-1]+1.1)
     plt.text(-3.5, 0, "EPG", fontsize=20, verticalalignment='bottom',
              horizontalalignment='left')
     plt.axis('off')
