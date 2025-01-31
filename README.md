@@ -11,10 +11,10 @@
     + GRE/FISP/GRASS/FFE: Acquire the zeroth-order free-induction-decay (FID) signal $F(k_0)$
     + PSIF/T2-FFE/SSFP-Echo: Acquire the -1st order signal $F(k_{-1})$
     + DESS: Acquire the 0th and -1st order signal $F(k_0)$ and $F(k_{-1})$
-    + TESS: Acquire the 0th and -1st order signal $F(k_0)$ and $F(k_{-1})$
+    + TESS: Acquire the 1st, 0th and -1st order signal $F(k_1)$, $F(k_0)$ and $F(k_{-1})$
     + MESS: First proposed by Chris T. Mizumoto et al. in 1991.
     + FLASH/SPGR: Note that sequence with RF spoiling is not considered here. Although these sequence also acquire the FID signal, RF pulses with quadratic phase increment will eventually reach a pesudo steady-state, where the stimulated echos from the higer order will be suppressed. The analysis in the following sections only consider the sequence with linear phase increment (phase-cycling).
-    
++ In this work, we propose a general algorithm to generate the pulse sequence waveform for arbitrary order MESS sequence. 
 
 ## Theory
 
@@ -71,3 +71,44 @@ $$S_n(\text{TE}_n) = F_n^+ e^{-\text{TE}_n/T_2}e^{-\left|\text{TE}_n+n\text{TR}\
 
 where the $T_2$ and $T_2'$ relaxation terms are multiplied to the transverse magnetization after the RF pulse $F^+$, and the off-resonance phase term corresponds to the phase shift of the $n$-th echo due to the B0 field inhomogeneity.
 
+With regards to the bSSFP sequence, all the echos are overlapped and the signal is given by
+
+$$S(\text{TE}) = \sum_{n=-\infty}^{\infty} S_n(\text{TE}_n)$$
+
+## Methods
+
+## Example Results
+
+The red area denotes the dephasing and rephasing gradients, the green area represents the readout gradient and the blue area stands for the spoiler gradient.
+
++ Conventional DESS ($F(k_0)$ and $F(k_{-1})$)
+
+![DESS](./figs/EPG_plot_0n1.png)
+
++ Modified DESS ($F(k_0)$ and $F(k_1)$)
+
+![DESS](./figs/EPG_plot_0p1.png)
+
++ Conventional TESS ($F(k_1)$, $F(k_0)$ and $F(k_{-1})$)
+
+![TESS](./figs/EPG_plot_p1n1.png)
+
++ Modified TESS ($F(k_2)$, $F(k_1)$, $F(k_0)$ and $F(k_{-1})$, with spoiling gradient)
+
++ MESS ($F(k_{-2})$, $F(k_{-1})$, $F(k_0)$ and $F(k_{1})$, with spoiling gradient)
+
+![MESS](./figs/EPG_plot_n2p1_spoil.png)
+
++ MESS ($F(k_{-2})$, $F(k_{-1})$, $F(k_0)$, $F(k_{1})$ and $F(k_{2})$, with spoiling gradient)
+
+![MESS](./figs/EPG_plot_n2p2_spoil.png)
+
++ MESS ($F(k_1)$, $F(k_0)$, $F(k_{-1})$, $F(k_{-2})$, with spoiling gradient)
+
+![MESS](./figs/EPG_plot_p1n2_spoil.png)
+
++ MESS ($F(k_1)$, $F(k_2)$, $F(k_3)$, $F(k_4)$, with spoiling gradient)
+
+![MESS](./figs/EPG_plot_p1p4_spoil.png)
+
+...
