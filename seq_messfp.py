@@ -12,7 +12,6 @@ class ME_SSFP:
                  fov_PE = 200e-3,
                  slice_thickness = 8e-3,
                  dwell = 1e-05,
-                 num_dummy=10,
                  phase_cycle=np.pi,
                  rf_duration=1e-3,
                  system=None,
@@ -25,11 +24,10 @@ class ME_SSFP:
         self.fov_PE = fov_PE
         self.slice_thickness = slice_thickness
         self.dwell = dwell
-        self.num_dummy = num_dummy
         self.phase_cycle = phase_cycle
         self.rf_duration = rf_duration
         if system is None:
-            self.system = pp.Opts(max_grad=40,grad_unit='mT/m',max_slew=150,slew_unit='T/m/s', rf_ringdown_time=20e-6,rf_dead_time=100e-6,adc_dead_time=20e-6,grad_raster_time=10e-6)
+            self.system = pp.Opts(max_grad=40,grad_unit='mT/m',max_slew=150,slew_unit='T/m/s', rf_ringdown_time=10e-6,rf_dead_time=400e-6,adc_dead_time=70e-6,grad_raster_time=10e-6)
         else:
             self.system = system
         self.prepare_sequence()
@@ -44,23 +42,14 @@ class ME_SSFP:
         self.rf, self.gz, self.gzr = pp.make_sinc_pulse(
         flip_angle=self.FA * np.pi / 180, duration=self.rf_duration,
         slice_thickness=self.slice_thickness, apodization=0.5, time_bw_product=4,
-        system=self.system, return_gz=True)
+        system=self.system, use="excitation", return_gz=True)
+        self.rf.delay = self.gz.rise_time
+        self.gz.delay = 0
 
         self.PE = np.arange(-self.num_PE// 2, self.num_PE// 2, 1) / self.fov_PE
 
-    def make_dummy_scans(self,seq):
-        for idx_dummy_rf in range(self.num_dummy):
-            rf_dummy, gz_dummy, gzr_dummy = pp.make_sinc_pulse(flip_angle=(idx_dummy_rf+1)/self.num_dummy*self.FA * np.pi / 180, duration=self.rf_duration, slice_thickness=self.slice_thickness, apodization=0.5, time_bw_product=4, system=self.system, return_gz=True, phase_offset=idx_dummy_rf*self.phase_cycle)
-
-            seq.add_block(rf_dummy, gz_dummy)
-            seq.add_block(gzr_dummy)
-            seq.add_block(pp.make_delay(self.TR-pp.calc_duration(gz_dummy)-pp.calc_duration(gzr_dummy)*2))
-            seq.add_block(gzr_dummy)
-
-
     def make_sequence(self, start_echo=0, end_echo=0, ascend=None, balance=False):
         seq = pp.Sequence(self.system)
-        self.make_dummy_scans(seq)
         a,b,c = arbitarySSFP(start_echo, end_echo, ascend, balance)
         print("a:{} b:{} c:{}".format(a,b,c))
         num_echo = abs(start_echo - end_echo) + 1
@@ -80,8 +69,8 @@ class ME_SSFP:
         delay_time = (self.TR-min_TR)
         for pe_idx, pe_area in enumerate(self.PE):
         # for pe_idx, pe_area in enumerate(self.PE[:5]):
-            self.rf.phase_offset = (pe_idx+self.num_dummy)*self.phase_cycle
-            adc.phase_offset = (pe_idx+self.num_dummy)*self.phase_cycle
+            self.rf.phase_offset = pe_idx*self.phase_cycle
+            adc.phase_offset = pe_idx*self.phase_cycle
             gpe_pre = pp.make_trapezoid(channel='y', area=pe_area, duration=min_pre_duration, system=self.system)
             gpe_rep = pp.make_trapezoid(channel='y', area=-pe_area, duration=min_rep_duration, system=self.system)
 
@@ -95,11 +84,15 @@ class ME_SSFP:
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    me_ssfp = ME_SSFP(TR=8e-3, dwell=1e-5, rf_duration=0.8e-3,num_PE=120, num_RO=120)
+    # System Parameter for uMR890
+    sys = pp.Opts(max_grad=40,grad_unit='mT/m',max_slew=150,slew_unit='T/m/s', rf_ringdown_time=10e-6,rf_dead_time=400e-6,adc_dead_time=70e-6,grad_raster_time=10e-6)
+    me_ssfp = ME_SSFP(TR=8e-3, dwell=1e-5, rf_duration=3e-3,num_PE=120, num_RO=120, system=sys)
     seq_p1n2 = me_ssfp.make_sequence(+1, -2)
     seq_p1n2.write('seq/seq_p1n2.seq')
     seq_0n3 = me_ssfp.make_sequence(+0, -3)
     seq_0n3.write('seq/seq_0n3.seq')
+    seq_0n1 = me_ssfp.make_sequence(+0, -1)
+    seq_0n1.write('seq/seq_0n1.seq')
     seq_bssfp = me_ssfp.make_sequence(0, 0, None, balance=True)
     seq_bssfp.write('seq/seq_bssfp.seq')
 
