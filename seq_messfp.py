@@ -103,7 +103,9 @@ if __name__ == "__main__":
     # System Parameter for uMR890
     sys = pp.Opts(max_grad=40, grad_unit='mT/m', max_slew=150, slew_unit='T/m/s',
                   rf_ringdown_time=10e-6, rf_dead_time=400e-6, adc_dead_time=70e-6, grad_raster_time=10e-6)
-    me_ssfp = ME_SSFP(TR=8e-3, dwell=1e-5, rf_duration=3e-3,
+    # me_ssfp = ME_SSFP(TR=8e-3, dwell=1e-5, rf_duration=3e-3,
+    #                   num_PE=120, num_RO=120, system=sys)
+    me_ssfp = ME_SSFP(TR=20e-3, dwell=1e-5, rf_duration=3e-3,
                       num_PE=120, num_RO=120, system=sys)
     seq_p1n2 = me_ssfp.make_sequence(+1, -2)
     seq_p1n2.write('seq/seq_p1n2.seq')
@@ -111,5 +113,11 @@ if __name__ == "__main__":
     seq_0n3.write('seq/seq_0n3.seq')
     seq_0n1 = me_ssfp.make_sequence(+0, -1)
     seq_0n1.write('seq/seq_0n1.seq')
+    seq_p5n5 = me_ssfp.make_sequence(+5, -5)
+    seq_p5n5.write('seq/seq_p5n5.seq')
+    seq_p3n3 = me_ssfp.make_sequence(+3, -3)
+    seq_p3n3.write('seq/seq_p3n3.seq')
+    seq_p2n3 = me_ssfp.make_sequence(+2, -3)
+    seq_p2n3.write('seq/seq_p2n3.seq')
     seq_bssfp = me_ssfp.make_sequence(0, 0, None, balance=True)
     seq_bssfp.write('seq/seq_bssfp.seq')

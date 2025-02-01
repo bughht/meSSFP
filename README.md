@@ -94,19 +94,44 @@ The $B_0$ field map could be estimated by the phase difference between the echos
 In our sequence, we acquire adjacent echos with fixed echo spacing $\Delta\text{TE}$. The signal intensity of the $n$-th echo is expressed as $\text{TE}_n = \text{TE}_0+n\Delta\text{TE}$
 
 
-The logarithm of the signal intensityis linearly related to $n$
+The logarithm of the signal intensityis linearly related to $n$. For simplicity, we replace the linear coefficient term with $\mu^+$ and $\mu^-$, and the residual term with $\lambda^+$ and $\lambda^-$.
 
 $$\log\left[|S(\text{TE}_n)|\right] = \log(|F^+(k_n)|) - \frac{\text{TE}_n}{T_2} - \frac{\left|\text{TE}_n+n\text{TR}\right|}{T_2'}$$
 
 $$\begin{aligned}
 \log\left[|S(\text{TE}_{n\ge 0})|\right] &= \log\left[c(1-E_2b)\right] + n\log(b) - \frac{\text{TE}_n}{T_2} - \frac{\text{TE}_n+n\text{TR}}{T_2'} \\
-&= \left\{\log\left[c(1-E_2b)\right] - \frac{\text{TE}_0}{T_2} - \frac{\text{TE}_0}{T_2'}\right\} + n\left[\log(b) - \frac{\Delta\text{TE}}{T_2} - \frac{\Delta \text{TE}+\text{TR}}{T_2'} \right] \\
+&= \left[\log(b) - \frac{\Delta\text{TE}}{T_2} - \frac{\Delta \text{TE}+\text{TR}}{T_2'} \right]n + \left\{\log\left[c(1-E_2b)\right] - \frac{\text{TE}_0}{T_2} - \frac{\text{TE}_0}{T_2'}\right\} \\
+&= \lambda^+ n + \mu^+
 \end{aligned}$$
 
 $$\begin{aligned}
 \log\left[|S(\text{TE}_{n< 0})|\right] &= \log\left[-c(1-E_2b^{-1})\right] - n\log(b) - \frac{\text{TE}_n}{T_2} + \frac{\text{TE}_n+n\text{TR}}{T_2'}\\
-& = \left\{\log\left[-c(1-E_2b^{-1}\right)] - \frac{\text{TE}_0}{T_2} + \frac{\text{TE}_0}{T_2'}\right\}+ n\left[-\log(b) - \frac{\Delta\text{TE}}{T_2} + \frac{\Delta \text{TE}+\text{TR}}{T_2'} \right] \\
+& = \left[-\log(b) - \frac{\Delta\text{TE}}{T_2} + \frac{\Delta \text{TE}+\text{TR}}{T_2'} \right]n + \left\{\log\left[-c(1-E_2b^{-1}\right)] - \frac{\text{TE}_0}{T_2} + \frac{\text{TE}_0}{T_2'}\right\}\\
+&= \lambda^- n + \mu^-
 \end{aligned}$$
+
+The coefficients $\hat\lambda^+$ and $\hat\lambda^-$ could be estimated from the signal intensity of the echos through linear fitting. The $T_2$ relaxation time could be derived from the combination of the coefficients.
+
+$$\lambda^++\lambda^-=-\frac{2\Delta\text{TE}}{T_2}\Longrightarrow\hat{T_2} = -\frac{2\Delta \text{TE}}{\hat\lambda^++\hat\lambda^-}$$
+
+<!-- $$\lambda^+-\lambda^-=2\left[\log(b)-\cfrac{\Delta\text{TE}+\text{TR}}{T_2'}\right] \Longrightarrow \begin{cases}
+b &= \exp\left(\cfrac{\hat\lambda^+-\hat\lambda^-}{2} + \cfrac{\Delta\text{TE}+\text{TR}}{T_2'}\right)\\
+T_2' &= \cfrac{\Delta\text{TE}+\text{TR}}{\log(b)-\cfrac{\hat\lambda^+-\hat\lambda^-}{2}}\\
+\end{cases}$$
+$$\begin{aligned}
+\mu^+ + \mu^- &= \log\left[c(1-E_2b)\right] + \log\left[-c(1-E_2b^{-1})\right] - \frac{2\text{TE}_0}{T_2} \\
+&=\log\left[c^2(1-E_2(b+b^{-1})+E_2^2)\right]-\frac{2\text{TE}_0}{T_2}\\
+\end{aligned}$$
+
+$$\mu^+ - \mu^- = \log\left[\frac{E_2b-1}{1-E_2b^{-1}}\right]-\frac{2\text{TE}_0}{T_2'}$$ -->
+
+The conventional DESS method to estimate $T_2$ with only 0th and -1st echo is based on the assumption of spin-echo relationship between the echos. 
+
+$$\hat{T_2} = \frac{2(\text{TR}-\text{TE}_0)}{\log\left[S(\text{TE}_0)/S(\text{TE}_{-1})\right]} $$
+
+B. Sveinsson et al. proposed a modified DESS also based on EPG analysis, but this method requires a prior knowledge of $T_1$ information, so it was only applied to cartilage imaging with a limited region of interest.
+
+$$\frac{S(\text{TE}_{-1})}{S(\text{TE}_{0})}=e^{\frac{2(TR - TE)}{T_2}}\sin^{2}\left(\frac{\alpha}{2}\right)\frac{1 + e^{\left(\frac{TR}{T_1}\right)}}{(1-\cos(\alpha))e^{-\left(\frac{TR}{T_1}\right)}}$$
 
 
 
