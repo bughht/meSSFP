@@ -14,7 +14,7 @@
     + TESS: Acquire the 1st, 0th and -1st order signal $F(k_1)$, $F(k_0)$ and $F(k_{-1})$
     + MESS: First proposed by Chris T. Mizumoto et al. in 1991.
     + FLASH/SPGR: Note that sequence with RF spoiling is not considered here. Although these sequence also acquire the FID signal, RF pulses with quadratic phase increment will eventually reach a pesudo steady-state, where the stimulated echos from the higer order will be suppressed. The analysis in the following sections only consider the sequence with linear phase increment (phase-cycling).
-+ In this work, we propose a general algorithm to generate the pulse sequence waveform for arbitrary order MESS sequence. 
++ In this work, we propose a general algorithm to generate the pulse sequence waveform for arbitrary order MESS sequence. The higher order of echo, 
 
 ## Theory
 
@@ -48,36 +48,73 @@ e^{-2i\phi} \sin^2 \frac{\alpha}{2} & \cos^2 \frac{\alpha}{2} & ie^{-i\phi} \sin
 The evolution of states between the RF pulses is given by
 
 $$\begin{aligned}
-F_{n+1}^- &= E_2 F_n^+\\
-Z_n^- &= E_1 Z_n^+,\quad n\ne 0\\
-Z_0^- &= E_1 Z_n^+ + M_0(1-E_1)\\
+F^-(k_{n+1}) &= E_2 F^+(k_n)\\
+Z^-(k_{n+1}) &= E_1 Z^+(k_n),\quad n\ne 0 \\
+Z^-(k_0) &= E_1 Z^+(k_0) + M_0(1-E_1)\\
 \end{aligned}$$
 
 
-Under the steady-state condition, the analytic solution for the $n$-th coefficient of the transverse magnetization after the RF pulse $F^+$ is given by \cite{leupold2017steady}
+Under the steady-state condition, the analytic solution for the $n$-th coefficient of the transverse magnetization after the RF pulse $F^+(k_n)$ is given by \cite{leupold2017steady}
 
-$$F^+(k_n) = \frac{M_0(1-E_1)}{(A-BE_2^2)\sqrt{1-a^2}}\left[\left(\frac{\sqrt{1-a^2}-1}{a}\right)^{|n|} - E_2\left(\frac{\sqrt{1-a^2}-1}{a}\right)^{|n+1|}\right]$$
+$$F^+(k_n) = \frac{M_0(1-E_1)\sin\alpha}{(A-BE_2^2)\sqrt{1-a^2}}\left[\left(\frac{\sqrt{1-a^2}-1}{a}\right)^{|n|} - E_2\left(\frac{\sqrt{1-a^2}-1}{a}\right)^{|n+1|}\right]$$
+
+where the coefficients $A$, $B$ and $a$ are given by
 
 $$\begin{aligned}
 A &= 1 - E_1\cos(\alpha) \\
-B &= E_1\sin(\alpha) \\
+B &= E_1 - \cos(\alpha) \\
 a &= \frac{E_2(B-A)}{A-BE_2^2} \\
 \end{aligned}$$
 
-the echo signal $S_n$ to be measured is given by
+The simplified expression for $F^+(k_{n\ge 0})$ and $F^+(k_{n<0})$ is derived as
+
+$$F^+(k_{n\ge 0}) = c(1-E_2b) b^{n}$$
+$$F^+(k_{n<0}) = c(1-E_2b^{-1}) b^{-n}$$
+
+where the coefficients $b$ and $c$ are given by
+
+$$\begin{aligned}
+b &= \frac{\sqrt{1-a^2}-1}{a} \\
+c &= \frac{M_0(1-E_1)\sin\alpha}{(A-BE_2^2)\sqrt{1-a^2}} \\
+\end{aligned}$$
+
+the echo signal $S(\text{TE}_n)$ to be measured is given by
 
 <!-- $$S_n(\text{TE}_n) = F_n^+ \underbrace{e^{-\text{TE}_n/T_2}}_{T_2\text{ relaxation}} \underbrace{e^{-\left|\text{TE}_n+n\text{TR}\right|/T_2'}}_{T_2'\text{ relaxation}}\underbrace{e^{j\omega_0(\text{TE}_n+n\text{TR})}}_{\text{off-resonance phase}}$$ -->
-$$S_n(\text{TE}_n) = F_n^+ e^{-\text{TE}_n/T_2}e^{-\left|\text{TE}_n+n\text{TR}\right|/T_2'}e^{j\omega_0(\text{TE}_n+n\text{TR})}$$
+$$S(\text{TE}_n) = F_n^+ e^{-\text{TE}_n/T_2}e^{-\left|\text{TE}_n+n\text{TR}\right|/T_2'}e^{j\omega_0(\text{TE}_n+n\text{TR})}$$
 
 where the $T_2$ and $T_2'$ relaxation terms are multiplied to the transverse magnetization after the RF pulse $F^+$, and the off-resonance phase term corresponds to the phase shift of the $n$-th echo due to the B0 field inhomogeneity.
 
 With regards to the bSSFP sequence, all the echos are overlapped and the signal is given by
 
-$$S(\text{TE}) = \sum_{n=-\infty}^{\infty} S_n(\text{TE}_n)$$
+$$S_{\text{bSSFP}} = \sum_{n=-\infty}^{\infty} S(\text{TE}_n)$$
+
+The $B_0$ field map could be estimated by the phase difference between the echos.
+
+In our sequence, we acquire adjacent echos with fixed echo spacing $\Delta\text{TE}$. The signal intensity of the $n$-th echo is expressed as $\text{TE}_n = \text{TE}_0+n\Delta\text{TE}$
+
+
+The logarithm of the signal intensityis linearly related to $n$
+
+$$\log\left[|S(\text{TE}_n)|\right] = \log(|F^+(k_n)|) - \frac{\text{TE}_n}{T_2} - \frac{\left|\text{TE}_n+n\text{TR}\right|}{T_2'}$$
+
+$$\begin{aligned}
+\log\left[|S(\text{TE}_{n\ge 0})|\right] &= \log\left[c(1-E_2b)\right] + n\log(b) - \frac{\text{TE}_n}{T_2} - \frac{\text{TE}_n+n\text{TR}}{T_2'} \\
+&= \left\{\log\left[c(1-E_2b)\right] - \frac{\text{TE}_0}{T_2} - \frac{\text{TE}_0}{T_2'}\right\} + n\left[\log(b) - \frac{\Delta\text{TE}}{T_2} - \frac{\Delta \text{TE}+\text{TR}}{T_2'} \right] \\
+\end{aligned}$$
+
+$$\begin{aligned}
+\log\left[|S(\text{TE}_{n< 0})|\right] &= \log\left[-c(1-E_2b^{-1})\right] - n\log(b) - \frac{\text{TE}_n}{T_2} + \frac{\text{TE}_n+n\text{TR}}{T_2'}\\
+& = \left\{\log\left[-c(1-E_2b^{-1}\right)] - \frac{\text{TE}_0}{T_2} + \frac{\text{TE}_0}{T_2'}\right\}+ n\left[-\log(b) - \frac{\Delta\text{TE}}{T_2} + \frac{\Delta \text{TE}+\text{TR}}{T_2'} \right] \\
+\end{aligned}$$
+
+
 
 ## Methods
 
-## Example Results
+
+
+## Exampbe Results
 
 The red area denotes the dephasing and rephasing gradients, the green area represents the readout gradient and the blue area stands for the spoiler gradient.
 
