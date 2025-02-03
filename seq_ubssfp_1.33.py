@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # %% S2. DEFINE the sequence
 
 FAex = 35  # @param {type: "slider", min: 1, max: 180}
-P_alpha_half = True  # @param {type: "boolean"}
+P_alpha_half = False  # @param {type: "boolean"}
 TR_ms = 0  # @param {type: "slider", min: 0.0, max: 20, step:0.1}
 TR = TR_ms*1e-3
 PEtype = 'linear'  # @param ['centric', 'linear']

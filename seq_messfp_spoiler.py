@@ -72,8 +72,6 @@ class ME_SSFP_Spoiler:
 
         gx_spoil = pp.make_trapezoid(
             channel='x', area=2*self.half_grad_area*spoiler_portion, system=self.system)
-        gz_spoil = pp.make_trapezoid(
-            channel='z', area=2*self.half_grad_area*spoiler_portion, system=self.system)
 
         if gx_spoil.flat_time == 0:
 
@@ -88,14 +86,15 @@ class ME_SSFP_Spoiler:
         else:
             gx_spoil_amplitude = (gx_spoil.area-0.5*gx_ro.amplitude*(gx_spoil.rise_time+gx_spoil.fall_time))/(
                 0.5*(gx_spoil.rise_time+gx_spoil.fall_time)+gx_spoil.flat_time)
-            print("ro_area", gx_ro.flat_area, "spoil area", gx_spoil.area, gx_spoil_amplitude *
-                  gx_spoil.flat_time+0.5*(gx_ro.amplitude+gx_spoil_amplitude)*(gx_spoil.rise_time+gx_spoil.fall_time))
+            # print("ro_amplitude", gx_ro.amplitude, "spoil_amplitude", gx_spoil_amplitude, "ro_area", gx_ro.flat_area, "spoil area", gx_spoil.area, gx_spoil_amplitude *
+            #       gx_spoil.flat_time+0.5*(gx_ro.amplitude+gx_spoil_amplitude)*(gx_spoil.rise_time+gx_spoil.fall_time))
             gx_ro_left = pp.make_extended_trapezoid(channel='x', times=[0, gx_ro.rise_time, gx_ro.rise_time+gx_ro.flat_time, gx_ro.rise_time+gx_ro.flat_time+gx_spoil.rise_time, gx_ro.rise_time +
                                                     gx_ro.flat_time+gx_spoil.rise_time+gx_spoil.flat_time], amplitudes=[0, gx_ro.amplitude, gx_ro.amplitude, gx_spoil_amplitude, gx_spoil_amplitude], system=self.system)
-            gx_ro_mid = pp.make_extended_trapezoid(channel='x', times=[0, gx_spoil.fall_time, gx_spoil.fall_time+gx_ro.flat_time, gx_spoil.fall_time+gx_ro.flat_time+gx_ro.rise_time, gx_spoil.fall_time +
-                                                   gx_ro.flat_time+gx_spoil.rise_time+gx_spoil.flat_time], amplitudes=[gx_spoil_amplitude, gx_ro.amplitude, gx_ro.amplitude, gx_spoil.amplitude-gx_ro.amplitude, gx_spoil_amplitude], system=self.system)
+            gx_ro_mid = pp.make_extended_trapezoid(channel='x', times=[0, gx_spoil.fall_time, gx_spoil.fall_time+gx_ro.flat_time, gx_spoil.fall_time+gx_ro.flat_time+gx_spoil.rise_time, gx_spoil.fall_time +
+                                                   gx_ro.flat_time+gx_spoil.rise_time+gx_spoil.flat_time], amplitudes=[gx_spoil_amplitude, gx_ro.amplitude, gx_ro.amplitude, gx_spoil_amplitude, gx_spoil_amplitude], system=self.system)
             gx_ro_right = pp.make_extended_trapezoid(channel='x', times=[0, gx_spoil.fall_time, gx_spoil.fall_time+gx_ro.flat_time, gx_spoil.fall_time +
                                                      gx_ro.flat_time+gx_ro.fall_time], amplitudes=[gx_spoil_amplitude, gx_ro.amplitude, gx_ro.amplitude, 0], system=self.system)
+        print("Delta TE: ", pp.calc_duration(gx_ro_mid))
         adc_left = pp.make_adc(num_samples=self.num_RO, duration=self.dwell *
                                self.num_RO, delay=gx_ro.rise_time, system=self.system)
         adc_mid = pp.make_adc(num_samples=self.num_RO, duration=self.dwell *
@@ -154,16 +153,16 @@ if __name__ == "__main__":
     sys = pp.Opts(max_grad=60, grad_unit='mT/m', max_slew=150, slew_unit='T/m/s',
                   rf_ringdown_time=20e-6, rf_dead_time=100e-6, adc_dead_time=20e-6, grad_raster_time=10e-6)
 
-    me_ssfp = ME_SSFP_Spoiler(FA=35, TR=16e-3, dwell=1e-5,
-                              rf_duration=0.8e-3, num_PE=120, num_RO=120, system=sys)
+    me_ssfp = ME_SSFP_Spoiler(FA=40, TR=20e-3, dwell=1e-5,
+                              rf_duration=1e-3, num_PE=120, num_RO=120, system=sys, phase_cycle=np.pi)
 
-    seq_p1n2 = me_ssfp.make_sequence(+1, -2, spoiler_portion=1)
-    seq_p1n2.write('seq/seq_p1n2_spoiler.seq')
-    seq_0n1 = me_ssfp.make_sequence(0, -1, spoiler_portion=1.5)
-    seq_0n1.write('seq/seq_0n1_spoiler.seq')
-    seq_n10 = me_ssfp.make_sequence(-1, 0, spoiler_portion=1.5)
-    seq_n10.write('seq/seq_n10_spoiler.seq')
-    seq_p2n3 = me_ssfp.make_sequence(+2, -3, spoiler_portion=1.5)
+    # seq_p1n2 = me_ssfp.make_sequence(+1, -2, spoiler_portion=1)
+    # seq_p1n2.write('seq/seq_p1n2_spoiler.seq')
+    # seq_0n1 = me_ssfp.make_sequence(0, -1, spoiler_portion=1.5)
+    # seq_0n1.write('seq/seq_0n1_spoiler.seq')
+    # seq_n10 = me_ssfp.make_sequence(-1, 0, spoiler_portion=1.5)
+    # seq_n10.write('seq/seq_n10_spoiler.seq')
+    seq_p2n3 = me_ssfp.make_sequence(+2, -3, spoiler_portion=3.5)
     seq_p2n3.write('seq/seq_p2n3_spoiler.seq')
     # seq_0n3 = me_ssfp.make_sequence(+0, -3)
     # seq_0n3.write('seq/seq_0n3.seq')
