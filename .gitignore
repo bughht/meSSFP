@@ -2,3 +2,4 @@ tmp.seq
 seq/*.seq
 phantom/*
 __pycache__
+numerical_brain_cropped.mat

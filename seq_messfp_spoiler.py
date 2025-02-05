@@ -153,8 +153,8 @@ if __name__ == "__main__":
     sys = pp.Opts(max_grad=60, grad_unit='mT/m', max_slew=150, slew_unit='T/m/s',
                   rf_ringdown_time=20e-6, rf_dead_time=100e-6, adc_dead_time=20e-6, grad_raster_time=10e-6)
 
-    me_ssfp = ME_SSFP_Spoiler(FA=40, TR=20e-3, dwell=1e-5,
-                              rf_duration=1e-3, num_PE=120, num_RO=120, system=sys, phase_cycle=np.pi)
+    me_ssfp = ME_SSFP_Spoiler(FA=35, TR=20e-3, dwell=1e-5,
+                              rf_duration=3e-3, num_PE=120, num_RO=120, system=sys, phase_cycle=np.pi)
 
     # seq_p1n2 = me_ssfp.make_sequence(+1, -2, spoiler_portion=1)
     # seq_p1n2.write('seq/seq_p1n2_spoiler.seq')
