@@ -2,6 +2,19 @@
 
 ## Introduction
 
+<!-- Intro -->
+Balance steady-state free precession (bSSFP, True-FISP, FIESTA, b-FFE) sequence is widely used in MRI clinical imaging due to its high signal intensity and acquisition efficiency. However, its sensitivity to off-resonance effects that lead to banding artifacts limits its application in high-field MRI. Conventionally, the banding artifacts were interpreted as the signal modulation from the off-resonance frequency. Extreme signal voids could be observed in the modulation function periodically with a cycle of $1/2\text{TR}$ Hz, resulting in the annoying dark bands on the reconstructed images.
+
+<!-- related articles -->
+The research on the banding artifacts of the bSSFP sequence has been conducted for decades. Some early research works suggested that there's no way to scan a artifact-free bSSFP image on clinical scanners \cite{zur1988analysis, hennig1991echoes, sobol1996stationary}. However, with the advanced shimming techniques and several optimization on the pulse sequence, the influence of the banding artifacts could be minimized \cite{lee2009improved}. Unfornatunately, a perfect shimming conditioin is not always achievable for a high-field MRI, or in the case of long TR. An extremely short repetition time (TR) is prevantly used to increase the passband width of the bSSFP sequence, thereby reduces its sensitivity to field inhomogeneity. A short TR somehow increase the specific absorption rate (SAR), which limits the application of the bSSFP sequence in some clinical scenarios.
+
+Several studies have suggested that eliminating the banding artifacts of bSSFP at higher field strengths and longer TR would be highly beneficial. The bSSFP sequence offers excellent image contrast and rapid scan times, along with enhanced signal from higher B0 and the flexibility to select TR for improved resolution or reduced SAR. Various methods have been proposed to mitigate banding artifacts by combining bSSFP images acquired with different radio-frequency (RF) phase-cycling techniques (e.g., averaging, maximum intensity profile (MIP), sum-of-squares (SOS), etc.) \cite{vasanawala2000linear, bangerter2002snr, bangerter2004analysis, elliott2007nonlinear, xiang2014banding}. While these strategies are straightforward to implement, multiple acquisitions significantly increase the scan time, and the banding artifacts cannot be completely eliminated when the acquisition is limited to a few phase-cycling steps.
+
+<!-- Our work -->
+In this work, we propose an elegant and efficient method to acquire MRI image of bSSFP contrast without banding artifacts. We explore the fundamental reason for the banding artifacts based on the extended phase graph (EPG) analysis,
+
+
+
 + Stead-State Free Precession (SSFP): First proposed by E. L. Hahn in 1950. Train of RF pulses with fixed repetition time (TR) and flip angle. Each RF pulse is followed by a combination of gradient pulses to encode the spatial information. The magnetization will reach a equilibrium state after a series of repetitions, which stands for the steady-state.
 + Extended Phase Graph (EPG): A theoretical framework to model the signal evolution of the magnetization in the presence of RF pulses and gradient pulses. The gradient could dephase the signal into higer order, while the RF pulse could rotate the isochromats. Based on the EPG analysis, the signal evolution could be described by a series of fourier coefficients in the transverse plane $F(k_n)$ and longitudinal axis $Z(k_n)$.
 + balanced SSFP (bSSFP/TrueFISP/): phase fully refocused at the end of each TR. Theoretically, bSSFP has no higher order of echoes

@@ -1,0 +1,740 @@
+\documentclass[AMA,STIX2COL,Linenumberson]{MRM}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\articletype{Article Type}%
+
+\received{26 April 2016}
+\revised{6 June 2016}
+\accepted{6 June 2016}
+\topskip=0pt
+
+\raggedbottom
+
+\begin{document}
+
+\title{This is the sample article title\protect\thanks{This is an example for title footnote.}}
+
+\author[1]{Haotian Hong}{\orcid{0000-0003-2206-3072}}
+
+\author[1]{Author Two}{\orcid{0000-0003-4941-5840}}
+
+\author[1,2,3]{Author Three}{\orcid{0000-0002-4169-8447}}
+
+\authormark{AUTHOR ONE \textsc{et al}}
+
+
+\address[1]{\orgdiv{Org Division}, \orgname{Org Name}, \orgaddress{\state{State name}, \country{Country name}}}
+
+\address[2]{\orgdiv{Org Division}, \orgname{Org Name}, \orgaddress{\state{State name}, \country{Country name}}}
+
+\address[3]{\orgdiv{Org Division}, \orgname{Org Name}, \orgaddress{\state{State name}, \country{Country name}}}
+
+\corres{Corresponding author name, This is sample corresponding address. \email{authorone@gmail.com}}
+
+\presentaddress{This is sample for present address text this is sample for present address text}
+
+\finfo{This work was partially supported by \fundingAgency{National Science Foundation} grant \fundingNumber{DMS-2014626}}
+
+\abstract[Summary]{This is sample abstract text this is sample abstract text this is sample abstract text this is sample abstract text this is sample abstract text this is sample abstract text this is sample abstract tex
+\section{Purpose} The aim of this study was to explore the information a 4-pool Bloch-McConnell model provides about the NOE contribution in ischaemic stroke, contrasting that with an intentionally approximate 3-pool model.
+\section{Methods} MRI data from 12 patients presenting with ischaemic stroke were retrospectively analysed, as well as from 6 animals induced with an ischaemic lesion.
+\section{Results} The 4-pool measure of NOEs exhibited a different association with tissue outcome compared to 3-pool approximation in the ischaemic core and in tissue that underwent delayed infarction.
+\section{Conclusion} Associations of NOEs with tissue pathology were found using the 4-pool metric that were not observed using the 3-pool approximation. 
+}
+
+\keywords{keyword1, keyword2, keyword3, keyword4}
+
+\wordcount{XXX}
+
+\jnlcitation{\cname{%
+\author{Williams K.}, 
+\author{B. Hoskins}, 
+\author{R. Lee}, 
+\author{G. Masato}, and 
+\author{T. Woollings}} (\cyear{2016}), 
+\ctitle{A regime analysis of Atlantic winter jet variability applied to evaluate HadGEM3-GC2}, \cjournal{Magn. Reson. Med.}, \cvol{2017;00:1--6}.}
+
+\maketitle
+
+% \footnotetext{\textbf{Abbreviations:}~\hbox{ANA,~anti-nuclear~antibodies;~APC,~antigen-}{\hfill\break}presenting~cells; IRF, interferonZ regulatory factor}
+
+\section{Introduction}\label{sec_intro}
+
+\section{Theory}\label{sec_thoery}
+
+The extended phase graph (EPG) \cite{weigel2015extended} decompose the magnetization into a series of fourier coefficients in the transverse plane ($F(k_n)$) and longitudinal axis ($Z(k_n)$) in equation \ref{eq1}
+
+\begin{equation}
+  \begin{cases}
+    F(k_n)&= \cfrac{1}{2\pi} \int_{-\pi}^{\pi} M_{xy}(\theta) e^{-jn\theta} d\theta, \quad n \in \mathbb{Z}\\
+    Z(k_n)&= \cfrac{1}{2\pi} \int_{-\pi}^{\pi} M_z(\theta) e^{-jn\theta} d\theta, \quad n \in \mathbb{N}\\
+  \end{cases}
+\label{eq1}
+\end{equation}
+
+
+\begin{equation}
+  k_n=n\phi_{\text{inc}} = n\gamma\int_0^{t_{\text{inc}}}G_\text{RO}(\tau)d\tau = n\gamma G_\text{RO}t_\text{inc}
+\label{eq2}
+\end{equation}
+
+The RF pulse induced rotation of the magnetization could be regarded as independent rotation of each isochromat. The rotation of the $n$-th isochromat is given by
+
+\begin{equation}
+  \begin{bmatrix}
+    F^+(k_n) \\
+    F^+(k_{-n})\\
+    Z^+(k_n) \\
+  \end{bmatrix} = \mathbf{R}(\theta,\phi)
+  \begin{bmatrix}
+    F^-(k_n) \\
+    F^-(k_{-n})\\
+    Z^-(k_n) \\
+  \end{bmatrix}
+  \label{eq3}
+\end{equation}
+
+where the rotation matrix $\mathbf{R}(\theta,\phi)$ is given by
+
+\begin{equation}
+  \mathbf{R}(\theta,\phi) = 
+  \begin{bmatrix}
+    \cos^2 \frac{\alpha}{2} & e^{2i\phi} \sin^2 \frac{\alpha}{2} & -ie^{i\phi} \sin \alpha \\
+    e^{-2i\phi} \sin^2 \frac{\alpha}{2} & \cos^2 \frac{\alpha}{2} & ie^{-i\phi} \sin \alpha \\
+    -\frac{i}{2} e^{-i\phi} \sin \alpha & \frac{i}{2} e^{i\phi} \sin \alpha & \cos \alpha \\
+  \end{bmatrix} 
+  \label{eq4}
+\end{equation}
+
+The evolution of states between the RF pulses is given by
+
+\begin{equation}
+  \begin{aligned}
+    F^-(k_{n+1}) &= E_2 F^+(k_n)\\
+    Z^-(k_{n+1}) &= E_1 Z^+(k_n),\quad n\ne 0 \\
+    Z^-(k_0) &= E_1 Z^+(k_0) + M_0(1-E_1)\\
+  \end{aligned}
+  \label{eq5}
+\end{equation}
+
+
+Under the steady-state condition, the analytic solution for the $n$-th coefficient of the transverse magnetization after the RF pulse $F^+(k_n)$ has been fully investigated by Leupold \cite{leupold2017steady}, which is given by equation \ref{eq6}.
+
+\begin{equation}
+  \begin{aligned}
+    &F^+(k_n) = \frac{M_0(1-E_1)\sin\alpha}{(A-BE_2^2)\sqrt{1-a^2}}\\
+    &\cdot\left[\left(\frac{\sqrt{1-a^2}-1}{a}\right)^{|n|} - E_2\left(\frac{\sqrt{1-a^2}-1}{a}\right)^{|n+1|}\right] 
+  \end{aligned}
+  \label{eq6}
+\end{equation}
+
+where the coefficients $A$, $B$ and $a$ are given by
+
+\begin{equation}
+ \begin{aligned}
+    A &= 1 - E_1\cos(\alpha) \\
+    B &= E_1 - \cos(\alpha) \\
+    a &= \frac{E_2(B-A)}{A-BE_2^2} \\
+  \end{aligned} 
+\end{equation}
+
+The simplified expression for $F^+(k_{n\ge 0})$ and $F^+(k_{n<0})$ is derived as
+
+\begin{equation}
+  \begin{aligned}
+    F^+(k_{n\ge 0}) &= c(1-E_2b) b^{n}\\
+    F^+(k_{n<0}) &= c(1-E_2b^{-1}) b^{-n}\\
+  \end{aligned}
+\end{equation}
+
+where the coefficients $b$ and $c$ are given by
+
+\begin{equation}
+  \begin{aligned}
+    b &= \frac{\sqrt{1-a^2}-1}{a} \\
+    c &= \frac{M_0(1-E_1)\sin\alpha}{(A-BE_2^2)\sqrt{1-a^2}} \\
+  \end{aligned}
+\end{equation}
+
+the echo signal $S(\text{TE}_n)$ to be measured is given by
+
+\begin{equation}
+  \begin{aligned}
+    S_n(\text{TE}_n) =& F_n^+\cdot \underbrace{e^{-\text{TE}_n/T_2}}_{T_2\text{ relaxation}}\cdot \underbrace{e^{-\left|\text{TE}_n+n\text{TR}\right|/T_2'}}_{T_2'\text{ relaxation}}\\
+    & \cdot \underbrace{e^{j\Delta\omega_0(\text{TE}_n+n\text{TR})}}_{\text{off-resonance phase}}\cdot\underbrace{e^{j\{[u(n)-1]\pi-\Delta\psi n\}}}_{\text{RF phase-cycle}}
+  \end{aligned}
+  % S(\text{TE}_n) = F_n^+ e^{-\text{TE}_n/T_2}e^{-\left|\text{TE}_n+n\text{TR}\right|/T_2'}e^{j\Delta\omega_0(\text{TE}_n+n\text{TR})}e^{j\{[u(n)-1]\pi-\Delta\psi n\}}
+\end{equation}
+
+The $T_2$ and $T_2'$ relaxation terms scale the transverse magnetization after the RF pulse $F^+$. The off-resonance phase term introduce the phase shift of the $n$-th echo due to the B0 field inhomogeneity, where $\Delta\omega_0 = 2\pi\gamma \Delta B_0$.
+
+The phase-cycle term which was not included in Leupold's paper represent the phase increment of the $n$-th echo due to the phase-cycling of the RF pulse, where $\Delta\psi$ is the phase increment between the RF pulses and $u(n)$ corresponds to the unit step function. 
+
+\begin{equation}
+  u(n) = \begin{cases}
+    1, & n\ge 0\\
+    0, & n<0\\
+  \end{cases}
+\end{equation}
+
+The $B_0$ field map could be estimated by the phase difference between the echoes.
+
+In our sequence, we acquire adjacent echoes with fixed echo spacing $\Delta\text{TE}$. The signal intensity of the $n$-th echo is expressed as $\text{TE}_n = \text{TE}_0+n\Delta\text{TE}$
+
+
+The logarithm of the signal intensityis linearly related to $n$. For simplicity, we replace the linear coefficient term with $\mu^+$ and $\mu^-$, and the residual term with $\lambda^+$ and $\lambda^-$.
+
+\begin{equation}
+  \log\left[|S(\text{TE}_n)|\right] = \log(|F^+(k_n)|) - \frac{\text{TE}_n}{T_2} - \frac{\left|\text{TE}_n+n\text{TR}\right|}{T_2'}
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    \log\left[|S(\text{TE}_{n\ge 0})|\right] &= \log\left[c(1-E_2b)\right] + n\log(b) - \frac{\text{TE}_n}{T_2} - \frac{\text{TE}_n+n\text{TR}}{T_2'} \\
+    &= \left[\log(b) - \frac{\Delta\text{TE}}{T_2} - \frac{\Delta \text{TE}+\text{TR}}{T_2'} \right]n + \left\{\log\left[c(1-E_2b)\right] - \frac{\text{TE}_0}{T_2} - \frac{\text{TE}_0}{T_2'}\right\} \\
+    &= \lambda^+ n + \mu^+\\
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    \log\left[|S(\text{TE}_{n< 0})|\right] &= \log\left[-c(1-E_2b^{-1})\right] - n\log(b) - \frac{\text{TE}_n}{T_2} + \frac{\text{TE}_n+n\text{TR}}{T_2'}\\
+    & = \left[-\log(b) - \frac{\Delta\text{TE}}{T_2} + \frac{\Delta \text{TE}+\text{TR}}{T_2'} \right]n + \left\{\log\left[-c(1-E_2b^{-1})\right] - \frac{\text{TE}_0}{T_2} + \frac{\text{TE}_0}{T_2'}\right\}\\
+    &= \lambda^- n + \mu^-
+  \end{aligned}
+\end{equation}  
+
+
+The total signal intensity of the echoes is given by
+
+$$\begin{aligned}
+\sum_{n=-\infty}^{\infty} |S(\text{TE}_n)| &= \sum_{n=0}^\infty e^{\lambda^+ n + \mu^+} + \sum_{n=-\infty}^{-1} e^{\lambda^- n + \mu^-}\\
+&= \frac{e^{\mu^+}}{1-e^{\lambda^+}} + \frac{e^{\mu^-}}{e^{\lambda^-}-1}\\
+&= \frac{c(1-E_2b)e^{-\text{TE}_0/T_2-\text{TE}_0/T_2'}}{1-b e^{-\Delta\text{TE}/T_2+(\Delta\text{TE}+\text{TR})/T_2'}} + \frac{-c(1-E_2b^{-1})e^{-\text{TE}_0/T_2+\text{TE}_0/T_2'}}{b^{-1}e^{-\Delta\text{TE}/T_2+(\Delta\text{TE}+\text{TR})/T_2'} -1} \\
+\end{aligned}$$
+
+The magnitude sum of all the echoes is different from the signal intensity of the bSSFP sequence. The bSSFP image contrast as well as the banding artifacts could be readily generated by the complex sum of the echoes. The dark band is due to the phase cancellation from
+
+$$\begin{aligned}
+S_{\text{bSSFP(banding)}} &= \sum_{n=-\infty}^{\infty} S(\text{TE}_n)\\
+&=\sum_{n=0}^{\infty} e^{\lambda^+ n + \mu^+ + j[\Delta\omega_0(\text{TE}_n+n\text{TR})-\Delta\psi n]} + \sum_{n=-\infty}^{-1} e^{\lambda^- n + \mu^- + j[\Delta\omega_0(\text{TE}_n+n\text{TR})+\pi-\Delta\psi n]}\\
+&= \frac{e^{\mu^+ + j\Delta\omega_0\text{TE}_0}}{1-e^{\lambda^+ + j[\Delta\omega_0(\Delta\text{TE}+\text{TR})-\Delta\psi]}}  + \frac{e^{\mu^- + j\Delta\omega_0\text{TE}_0}}{1-e^{\lambda^- + j[\Delta\omega_0(\Delta\text{TE}+\text{TR})-\Delta\psi]}}\\
+\end{aligned}$$
+
+To generate the bSSFP image contrast without banding from the MESS echoes, it's straightforward to neglect the off-resonance phase term. The phase-cycle term should be preserved to maintain the image contrast.
+
+$$\begin{aligned}
+S_{\text{bSSFP(no banding)}} &= \sum_{n=-\infty}^{\infty} |S(\text{TE}_n)| e^{\{[u(n)-1]\pi-\Delta\psi n\}}
+&=\sum_{n=0}^{\infty} e^{\lambda^+ n + \mu^+ + j[\Delta\omega_0(\text{TE}_n+n\text{TR})-\Delta\psi n]} + \sum_{n=-\infty}^{-1} e^{\lambda^- n + \mu^- + j[\Delta\omega_0(\text{TE}_n+n\text{TR})+\pi-\Delta\psi n]}\\
+&= \frac{e^{\mu^+}}{1-e^{\lambda^+ - j\Delta\psi}}  + \frac{e^{\mu^- }}{1-e^{\lambda^- - j\Delta\psi}}\\
+\end{aligned}$$
+
+\section{Methods}\label{sec_methods}
+
+\subsection{Pulse Sequence Generation}
+
+  \subsection{Simulation Experiments}
+
+  \subsection{Phantom and In Vivo Experiments}
+
+\section{Results}\label{sec_results}
+
+\section{Discussion}\label{sec_discussion}
+
+\section{Conclusion}\label{sec_conclusions}
+
+% \section{Sample for first level head}\label{sec1}
+
+% Lorem ipsum dolor sit amet,\marginpar{R2.3} consectetuer adipiscing elit as shown in Ref. [\citen{Hirt1974}] Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae,
+% felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, low-case $l, i,$ capital $I$ and unity well-distinguishable in mathematical expressions such as $l = 1$ or $I =$ diag $i(1; 1; 1)$.
+
+% Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus viverra
+% fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proin fermentum massa ac
+% quam. Sed diam turpis, molestie vitae, placerat a, molestie nec, leo.\cite{Liska2010} Maecenas lacinia. Nam ipsum ligula, eleifend
+% at, accumsan nec, suscipit a, ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem. Sed lacinia
+% nulla vitae enim. Pellentesque tincidunt purus vel magna. Integer non enim. Praesent euismod nunc eu purus. Donec
+% bibendum quam in tellus. Nullam cursus pulvinar lectus. Donec et mi. Nam vulputate metus eu enim. Vestibulum
+% pellentesque felis eu massa.
+
+% Example for\marginpar{R2.3} bibliography citations cite\cite{Taylor1937}, cites\cite{Knupp1999,Kamm2000}
+
+% Quisque ullamcorper placerat ipsum. Cras nibh.\cite{Kucharik2003,Blanchard2015} Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit
+% amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis.
+% Nunc elementum fermentum wisi. Aenean placerat. Ut imperdiet, enim sed gravida sollicitudin, felis odio placerat
+% quam, ac pulvinar elit purus eget enim. Nunc vitae tortor. Proin tempus nibh sit amet nisl. Vivamus quis tortor
+% vitae risus porta vehicula.
+
+% Fusce mauris. Vestibulum luctus nibh at lectus. Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac
+% venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue
+% quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor. Nulla facilisi. Sed a turpis eu lacus commodo facilisis. Morbi fringilla, wisi in dignissim interdum, justo lectus sagittis dui, et
+% vehicula libero dui cursus dui. Mauris tempor ligula sed lacus. Duis cursus enim ut augue. Cras ac magna. Cras nulla.
+% Nulla egestas. Curabitur a leo. Quisque egestas wisi eget nunc. Nam feugiat lacus vel est. Curabitur consectetuer.
+
+
+% \begin{figure}[t]
+% \centerline{\includegraphics[width=16pc,height=15pc,draft]{empty}}
+% \caption{This is the sample figure caption.}\label{fig1}
+% \end{figure}
+
+% \begin{table}[b]%
+% \caption{This is sample table caption.\label{tab2}}%
+% \begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lccc@{\extracolsep\fill}}
+% \toprule
+% \textbf{col1 head} & \textbf{col2 head}  & \textbf{col3 head}  & \textbf{col4 head}\\
+% \midrule
+% col1 text & col2 text  & col3 text  & col4 text\tnote{$^\dagger$}   \\
+% col1 text & col2 text  & col3 text  & col4 text \\
+% col1 text & col2 text  & col3 text  & col4 text\tnote{$^\ddagger$}   \\
+% \bottomrule
+% \end{tabular*}
+% \begin{tablenotes}
+% \item Source: Example for table source text.
+% \item[$^\dagger$] Example for a first table footnote.
+% \item[$^\ddagger$] Example for a second table footnote.
+% \end{tablenotes}
+% \end{table}
+
+% Suspendisse vel felis. Ut lorem lorem, interdum eu, tincidunt sit amet, laoreet vitae, arcu. Aenean faucibus pede eu
+% ante. Praesent enim elit, rutrum at, molestie non, nonummy vel, nisl. Praesent enim elit, rutrum at, molestie non, nonummy vel, nisl. Ut lectus eros, malesuada sit amet, fermentum
+% eu, sodales cursus, magna.
+
+% \begin{figure*}
+% \centerline{\includegraphics[width=342pt,height=9pc,draft]{empty}}
+% \caption{This is the sample figure caption.\label{fig2}}
+% \end{figure*}
+
+% \subsection{Example for second level head}
+% Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec odio elit, dictum
+% in, hendrerit sit amet, egestas sed, leo. Praesent feugiat sapien aliquet odio. Integer vitae justo. Aliquam vestibulum
+% fringilla lorem. Sed neque lectus, consectetuer at, consectetuer sed, eleifend ac, lectus. Nulla facilisi. Pellentesque
+% eget lectus. Proin eu metus. Sed porttitor. In hac habitasse platea dictumst.%
+
+
+% \begin{quote}
+% This is an example\cite{Burton2013,Berndt2011,Kucharik2012} for quote text. This is an example for quote text. This is an example for quote text. This is an example for quote text.\cite{Breil2015} This is an example for quote text. This is an example for quote text. This is an example for quote text. This is an example for quote text. This is an example for quote text. This is an example for quote text.\cite{Barth1997} This is an example for quote text. This is an example for quote text. This is an example for quote text. 
+% \end{quote}
+
+% \subsubsection{Third level head text}
+
+% Aliquam lectus. Vivamus leo. Quisque ornare tellus ullamcorper nulla. Mauris porttitor pharetra tortor. Sed fringilla
+% justo sed mauris. Mauris tellus. Sed non leo. Nullam elementum, magna in cursus sodales, augue est scelerisque
+% sapien, venenatis congue nulla arcu et pede.
+
+% \begin{table*}[t]%
+% \caption{This is sample table caption.\label{tab1}}
+% \begin{tabular*}{\textwidth}{@{\extracolsep\fill}lccD{.}{.}{3}c@{\extracolsep\fill}}
+% \toprule
+% &\multicolumn{2}{@{}c@{}}{\textbf{Spanned heading\tnote{$^{1}$}}} & \multicolumn{2}{@{}c@{}}{\textbf{Spanned heading\tnote{$^{2}$}}} \\\cmidrule{2-3}\cmidrule{4-5}
+% \textbf{col1 head} & \textbf{col2 head}  & \textbf{col3 head}  & \multicolumn{1}{@{}l@{}}{\textbf{col4 head}}  & \textbf{col5 head}   \\
+% \midrule
+% col1 text & col2 text  & col3 text  & 12.34  & col5 text\tnote{$^{1}$}   \\
+% col1 text & col2 text  & col3 text  & 1.62  & col5 text\tnote{$^{2}$}   \\
+% col1 text & col2 text  & col3 text  & 51.809  & col5 text   \\
+% \bottomrule
+% \end{tabular*}
+% \begin{tablenotes}%%[341pt]
+% \item Source: Example for table source text, example for table source text, example for table source text.
+% \item[$^{1}$] Example for a first table footnote, example for a first table footnote, example for a first table footnote.
+% \item[$^{2}$] Example for a second table footnote, example for a second table footnote, example for a second table footnote.
+% \end{tablenotes}
+% \end{table*}
+
+% \paragraph{Fourth level head text}
+
+% Sed feugiat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut pellentesque
+% augue sed urna.
+
+% \begin{boxtext}
+% \vspace*{-1.5\baselineskip}\section*{Example of Boxtext}%
+% Nulla in ipsum. Praesent eros nulla, congue vitae, euismod ut, commodo a, wisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean nonummy magna non leo. Sed felis erat, ullamcorper in, dictum non, ultricies ut, lectus.
+% \end{boxtext}
+
+% Etiam euismod. Fusce facilisis lacinia dui. Suspendisse potenti. In mi erat, cursus id, nonummy sed, ullamcorper
+% eget, sapien. Praesent pretium, magna in eleifend egestas, pede pede pretium lorem, quis consectetuer tortor sapien
+% facilisis magna. Mauris quis magna varius nulla scelerisque imperdiet. Aliquam non quam. Aliquam porttitor quam
+% a lacus. Praesent vel arcu ut tortor cursus volutpat. In vitae pede quis diam bibendum placerat. Fusce elementum
+% convallis neque. Sed dolor orci, scelerisque ac, dapibus nec, ultricies ut, mi. Duis nec dui quis leo sagittis commodo.
+
+% \subparagraph{Fifth level head text}
+% Quisque ornare tellus ullamcorper nulla. Mauris porttitor pharetra
+% tortor. Sed fringilla justo sed mauris. Mauris tellus. Sed non leo. Nullam elementum, magna in cursus sodales, augue
+% est scelerisque sapien, venenatis congue nulla arcu et pede. Ut suscipit enim vel sapien. Donec congue. Maecenas
+% urna mi, suscipit in, placerat ut, vestibulum ut, massa. Fusce ultrices nulla et nisl.
+
+% Below is the example\cite{Liska2010,Kucharik2003,Blanchard2015} for bulleted list. Below is the example for bulleted list. Below is the example for bulleted list. Below is the example for bulleted list. Below is the example for bulleted list. Below is the example list\footnote{This is an example for footnote.}:
+% \begin{itemize}
+% \item bulleted list entry sample bulleted list entry.\cite{Lauritzen2011} sample list entry text. 
+% \item bulleted list entry sample bulleted list entry.\cite{Klima2017} bulleted list entry sample bulleted list entry.\cite{Dukowicz2000} sample list entry text.  bulleted list entry sample bulleted list entry.
+% \end{itemize}
+
+% \noindent\textbf{Description sample:}
+
+% \begin{description}
+% \item[first entry] description text. description text.\cite{Kucharik2011,Loubere2005} description text. description text. description text. description text. description text. 
+% \item[second long entry] description text. description text. description text. description text. description text. description text. description text. 
+% \item[third entry] description text. description text. description text. description text. description text. 
+% \item[fourth entry] description text. description text. 
+% \end{description}
+
+
+% \noindent\textbf{Numbered list items sample:}
+
+% \begin{enumerate}[1.]
+% \item First level numbered list entry. sample numbered list entry. 
+
+% \item First numbered list entry. sample numbered list entry. Numbered list entry.\cite{Caramana1998} sample numbered list entry. Numbered list entry. sample numbered list entry. 
+
+% \begin{enumerate}[a.]
+% \item Second level alpabetical list entry. Second level alpabetical list entry. Second level alpabetical list entry.\cite{Hoch2009} Second level alpabetical list entry. 
+
+% \item Second level alpabetical list entry. Second level alpabetical list entry.\cite{Shashkov1996,Knupp1999,Knupp1999}
+
+% \begin{enumerate}[i.]
+% \item Third level lowercase roman numeral list entry. Third level lowercase roman numeral list entry. Third level lowercase roman numeral list entry. 
+
+% \item Third level lowercase roman numeral list entry. Third level lowercase roman numeral list entry. Third level lowercase roman numeral list entry. 
+
+% \item Third level lowercase roman numeral list entry. Third level lowercase roman numeral list entry.\cite{Kamm2000}
+% \end{enumerate}
+
+% \item Second level alpabetical list entry. Second level alpabetical list entry.\cite{Taylor1937}
+% \end{enumerate}
+
+% \item First level numbered list entry. sample numbered list entry. Numbered list entry. sample numbered list entry. Numbered list entry. 
+
+% \item Another first level numbered list entry. sample numbered list entry. Numbered list entry. sample numbered list entry. Numbered list entry. 
+% \end{enumerate}
+
+% \noindent\textbf{un-numbered list items sample:}
+
+% \begin{enumerate}[]
+% \item Sample unnumberd list text.
+% \item Sample unnumberd list text.
+% \item sample unnumberd list text. 
+% \item Sample unnumberd list text.
+% \end{enumerate}
+
+% \section{Examples for enunciations}\label{sec4}
+
+% \begin{theorem}[Theorem subhead]\label{thm1}
+% Example theorem text. Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis. Nunc elementum fermentum wisi. Aenean placerat. Ut imperdiet, enim sed gravida sollicitudin, felis odio placerat quam, ac pulvinar elit purus eget enim. Nunc vitae tortor. Proin tempus nibh sit amet nisl. Vivamus quis tortor vitae risus porta vehicula.
+% \end{theorem}
+
+% Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac
+% venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue
+% quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor.
+
+% \begin{proposition}
+% Example proposition text. Nulla
+% facilisi. Sed a turpis eu lacus commodo facilisis. Morbi fringilla, wisi in dignissim interdum, justo lectus sagittis dui, et
+% vehicula libero dui cursus dui. Mauris tempor ligula sed lacus. Duis cursus enim ut augue. Cras ac magna. Cras nulla.
+% Nulla egestas. Curabitur a leo. Quisque egestas wisi eget nunc. Nam feugiat lacus vel est. Curabitur consectetuer.
+% \end{proposition}
+
+% Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus
+% viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proin fermentum massa
+% ac quam. 
+
+% \begin{definition}[Definition sub head]
+% Example definition text. Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis.
+% \end{definition}
+
+% Sed commodo posuere pede. Mauris ut est. Ut quis purus. Sed ac odio. Sed vehicula hendrerit sem. Duis non odio. Morbi ut dui. Sed accumsan risus eget odio. In hac habitasse platea dictumst. Pellentesque non elit. Fusce sed justo eu urna porta tincidunt. Mauris felis odio, sollicitudin sed, volutpat a, ornare ac, erat. Morbi quis dolor. 
+
+% \begin{proof}
+% Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. 
+% \end{proof}
+
+% Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus libero,
+% pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna,
+% vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque
+% a nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt
+% urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus mauris.
+
+% Vivamus viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proin fermentum massa
+% ac quam. Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus
+% viverra fermentum felis. Donec nonummy pellentesque ante.
+
+% \begin{proof}[Proof of Theorem~\ref{thm1}]
+% Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. Example for proof text. 
+% \end{proof}
+
+% \begin{sidewaystable}%[h]
+% \caption{Sideways table caption. For decimal alignment refer column 4 to 9 in tabular* preamble.\label{tab3}}%
+% \begin{tabular*}{\textheight}{@{\extracolsep\fill}lccD{.}{.}{4}D{.}{.}{4}D{.}{.}{4}D{.}{.}{4}D{.}{.}{4}D{.}{.}{4}@{\extracolsep\fill}}%
+% \toprule
+%   & \textbf{col2 head} & \textbf{col3 head} & \multicolumn{1}{c}{\textbf{10}} &\multicolumn{1}{c}{\textbf{20}} &\multicolumn{1}{c}{\textbf{30}} &\multicolumn{1}{c}{\textbf{10}} &\multicolumn{1}{c}{\textbf{20}} &\multicolumn{1}{c}{\textbf{30}} \\
+% \midrule
+%   &col2 text &col3 text &0.7568&1.0530&1.2642&0.9919&1.3541&1.6108 \\
+%   & &col2 text &12.5701 &19.6603&25.6809&18.0689&28.4865&37.3011 \\
+% 3 &col2 text  & col3 text &0.7426&1.0393&1.2507&0.9095&1.2524&1.4958 \\
+%   & &col3 text &12.8008&19.9620&26.0324&16.6347&26.0843&34.0765 \\
+%   & col2 text & col3 text &0.7285&1.0257&1.2374&0.8195&1.1407\tnote{^1} &1.3691 \\
+%   & & col3 text &13.0360&20.2690&26.3895&15.0812&23.4932\tnote{^2} &30.6060 \\
+% \bottomrule
+% \end{tabular*}
+% \begin{tablenotes}%%[\textheight]
+% \item[$^{1}$] First sideways table footnote. Sideways table footnote. Sideways table footnote. Sideways table footnote.
+% \item[$^{2}$] Second sideways table footnote. Sideways table footnote. Sideways table footnote. Sideways table footnote.
+% \end{tablenotes}
+% \end{sidewaystable}
+
+% \begin{sidewaysfigure}
+% \centerline{\includegraphics[width=542pt,height=9pc,draft]{empty}}
+% \caption{Sideways figure caption. Sideways figure caption. Sideways figure caption. Sideways figure caption. Sideways figure caption. Sideways figure caption.\label{fig3}}
+% \end{sidewaysfigure}
+% \clearpage
+% Pellentesque wisi.\cite{Kucharik2012} Nullam malesuada. Morbi ut tellus ut pede tincidunt porta. Lorem ipsum dolor sit amet,
+% consectetuer adipiscing elit. Etiam congue neque id dolor.
+
+% \begin{algorithm}[t]
+% \caption{Pseudocode for our algorithm}\label{alg1}
+% \begin{algorithmic}
+%   \For each frame
+%   \For water particles $f_{i}$
+%   \State compute fluid flow\cite{Hirt1974}
+%   \State compute fluid--solid interaction\cite{Benson1992}
+%   \State apply adhesion and surface tension\cite{Margolin2003}
+%   \EndFor
+%    \For solid particles $s_{i}$
+%    \For neighboring water particles $f_{j}$
+%    \State compute virtual water film \\(see Section~\ref{sec1})
+%    \EndFor
+%    \EndFor
+%    \For solid particles $s_{i}$
+%    \For neighboring water particles $f_{j}$
+%    \State compute growth direction vector \\(see Section~\ref{sec1})
+%    \EndFor
+%    \EndFor
+%    \For solid particles $s_{i}$
+%    \For neighboring water particles $f_{j}$
+%    \State compute $F_{\theta}$ (see Section~\ref{sec1})
+%    \State compute $CE(s_{i},f_{j})$ \\(see Section~\ref{sec1})
+%    \If $CE(b_{i}, f_{j})$ $>$ glaze threshold
+%    \State $j$th water particle's phase $\Leftarrow$ ICE
+%    \EndIf
+%    \If $CE(c_{i}, f_{j})$ $>$ icicle threshold
+%    \State $j$th water particle's phase $\Leftarrow$ ICE
+%    \EndIf
+%    \EndFor
+%    \EndFor
+%   \EndFor
+% \end{algorithmic}
+% \end{algorithm}
+
+% \begin{equation}
+% s(nT_{s}) = s(t)\times \sum\limits_{n=0}^{N-1} \delta (t-nT_{s}) \xleftrightarrow{\mathrm{DFT}}  S \left(\frac{m}{NT_{s}}\right)
+% \end{equation}
+
+% Donec et nisl at wisi luctus bibendum. Nam interdum tellus ac libero. Sed sem justo, laoreet vitae, fringilla at, adipiscing ut, nibh. Maecenas non sem quis tortor eleifend fermentum. Etiam id tortor ac mauris porta vulputate. Integer porta neque vitae massa.\cite{Hirt1974,Benson1992}  Maecenas tempus libero a libero posuere dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean quis mauris sed elit commodo placerat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Vivamus rhoncus tincidunt libero. Etiam elementum pretium justo. Pellentesque wisi. Nullam malesuada. Morbi ut tellus ut pede tincidunt porta. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam congue neque id dolor.
+
+% Donec et nisl at wisi luctus bibendum. Nam interdum tellus ac libero. Sed sem justo, laoreet vitae, fringilla at,
+% adipiscing ut, nibh. Maecenas non sem quis tortor eleifend fermentum. Etiam id tortor ac mauris porta vulputate.
+% Integer porta neque vitae massa. Maecenas tempus libero a libero posuere dictum. Vestibulum ante ipsum primis in
+% faucibus orci luctus et ultrices posuere cubilia Curae; Aenean quis mauris sed elit commodo placerat. Class aptent
+% taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Vivamus rhoncus tincidunt libero.
+% Etiam elementum pretium justo. Vivamus est. Morbi a tellus eget pede tristique commodo. Nulla nisl. Vestibulum
+% sed nisl eu sapien cursus rutrum.
+
+% Sed feugiat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut pellentesque
+% augue sed urna. Vestibulum diam eros, fringilla et, consectetuer eu, nonummy id, sapien. Nullam at lectus. In sagittis
+% ultrices mauris. Curabitur malesuada erat sit amet massa. Fusce blandit. Aliquam erat volutpat. Aliquam euismod.
+% Aenean vel lectus. Nunc imperdiet justo nec dolor.
+
+% Etiam euismod. Fusce facilisis lacinia dui. Suspendisse potenti. In mi erat, cursus id, nonummy sed, ullamcorper
+% eget, sapien. Praesent pretium, magna in eleifend egestas, pede pede pretium lorem, quis consectetuer tortor sapien
+% facilisis magna. Mauris quis magna varius nulla scelerisque imperdiet. Aliquam non quam. Aliquam porttitor quam
+% a lacus. Praesent vel arcu ut tortor cursus volutpat. In vitae pede quis diam bibendum placerat. Fusce elementum
+% convallis neque. Sed dolor orci, scelerisque ac, dapibus nec, ultricies ut, mi. Duis nec dui quis leo sagittis commodo.
+
+% Aliquam lectus. Vivamus leo. Quisque ornare tellus ullamcorper nulla. Mauris porttitor pharetra
+% tortor. Sed fringilla justo sed mauris. Mauris tellus. Sed non leo. Nullam elementum, magna in cursus sodales, augue
+% est scelerisque sapien, venenatis congue nulla arcu et pede. Ut suscipit enim vel sapien. Donec congue. Maecenas
+% urna mi, suscipit in, placerat ut, vestibulum ut, massa. Fusce ultrices nulla et nisl.
+
+% Etiam ac leo a risus tristique nonummy. Donec dignissim tincidunt nulla. Vestibulum rhoncus molestie odio. Sed
+% lobortis, justo et pretium lobortis, mauris turpis condimentum augue, nec ultricies nibh arcu pretium enim. Nunc
+% purus neque, placerat id, imperdiet sed, pellentesque nec, nisl. Vestibulum imperdiet neque non sem accumsan laoreet.
+% In hac habitasse platea dictumst.% 
+% \clearpage
+
+% \section{Conclusions}\label{sec5}
+
+% Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae purus elit, vestibulum ut, placerat ac, adipiscing vitae,
+% felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna. Donec
+% vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+% Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices. Phasellus eu tellus
+% sit amet tortor gravida placerat. Integer sapien est, iaculis in, pretium quis, viverra ac, nunc. Praesent eget sem vel
+% leo ultrices bibendum. Aenean faucibus. Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla. Curabitur
+% auctor semper nulla. Donec varius orci eget risus. Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam.
+% Duis eget orci sit amet orci dignissim rutrum.
+
+% Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus libero,
+% pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna,
+% vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque
+% a nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt
+% urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus\break mauris.
+
+% \begin{widetext}
+% \begin{equation}
+% s(nT_{s}) = s(t)\times \sum\limits_{n=0}^{N-1} \delta (t-nT_{s}) \xleftrightarrow{\mathrm{DFT}}  S \left(\frac{m}{NT_{s}}\right) = \frac{1}{N} \sum\limits_{n=0}^{N-1} \sum\limits_{k=-N/2}^{N/2-1} s_{k} e^{\mathrm{j}2\pi k\Delta fnT_{s}} e^{-j\frac{2\pi}{N}mn}
+% \end{equation}
+% \end{widetext}
+
+\section*{Acknowledgments}
+% This is acknowledgment text.\cite{Kenamond2013} Provide text here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here. This is acknowledgment text. Provide text here.%
+
+\subsection*{Author contributions}
+
+This is an author contribution text. This is an author contribution text. This is an author contribution text. This is an author contribution text. This is an author contribution text. This is an author contribution text. 
+
+\subsection*{Financial disclosure}
+
+None reported.
+
+\subsection*{Conflict of interest}
+
+The authors declare no potential conflict of interests.
+
+\bibliography{MRM-AMA}%
+\vfill\pagebreak
+
+\section*{Supporting information}
+The following supporting information is available as part of the online article:
+
+\vskip\baselineskip\noindent
+\textbf{Figure S1.}
+{500{\uns}hPa geopotential anomalies for GC2C calculated against the ERA Interim reanalysis. The period is 1989--2008.}
+
+\noindent
+\textbf{Figure S2.}
+{The SST anomalies for GC2C calculated against the observations (OIsst).}
+
+\vspace*{6pt}
+\appendix
+
+\section{Section title of first appendix\label{app1}}
+
+Use \verb+\begin{verbatim}...\end{verbatim}+ for program\break codes without math. Use \verb+\begin{alltt}...\end{alltt}+ for program codes with math. Based on the text\break provided inside the optional argument of \verb+\begin{code}[Psecode|Listing|Box|Code|+ \verb+Specification|Procedure|Sourcecode|Program]...+ \verb+\end{code}+ tag corresponding boxed like floats are generated. Also note that \verb+\begin{code}[Code|Listing]...+ \verb+\end{code}+ tag with either Code or Listing text as optional argument text are set with computer modern typewriter font.  All other code environments are set with normal text font. Refer below example:
+
+\begin{lstlisting}[caption={Descriptive Caption Text},label=DescriptiveLabel]
+for i:=maxint to 0 do
+begin
+{ do nothing }
+end;
+Write('Case insensitive ');
+WritE('Pascal keywords.');
+\end{lstlisting}
+
+
+
+\subsection{Subsection title of first appendix\label{app1.1a}}
+
+Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus libero, pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna, vitae ornare odio metus a mi.
+
+\subsubsection{Subsection title of first appendix\label{app1.1.1a}}
+
+\noindent\textbf{Unnumbered figure}
+
+% \begin{center}
+% \includegraphics[width=7pc,height=8pc,draft]{empty}
+% \end{center}
+
+
+Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac
+venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue
+quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor. Nulla
+facilisi. Sed a turpis eu lacus commodo facilisis. Morbi fringilla, wisi in dignissim interdum, justo lectus sagittis dui, et
+vehicula libero dui cursus dui. Mauris tempor ligula sed lacus. Duis cursus enim ut augue. Cras ac magna. Cras nulla.
+
+\section{Section title of second appendix\label{app2}}%
+
+Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac venenatis arcu wisi vel nisl.
+
+
+%== Figure 4 ==
+%% Example for figure inside appendix
+% \begin{figure}[t]
+% \centerline{\includegraphics[height=10pc,width=78mm,draft]{empty}}
+% \caption{This is an example for appendix figure.\label{fig5}}
+% \end{figure}
+
+\subsection{Subsection title of second appendix\label{app2.1a}}
+
+Sed commodo posuere pede. Mauris ut est. Ut quis purus. Sed ac odio. Sed vehicula hendrerit sem. Duis non odio.
+Morbi ut dui. Sed accumsan risus eget odio. In hac habitasse platea dictumst. Pellentesque non elit. Fusce sed justo
+eu urna porta tincidunt. Mauris felis odio, sollicitudin sed, volutpat a, ornare ac, erat. Morbi quis dolor. Donec
+pellentesque, erat ac sagittis semper, nunc dui lobortis purus, quis congue purus metus ultricies tellus. Proin et quam.
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Praesent sapien turpis,
+fermentum vel lacus.
+
+\subsubsection{Subsection title of second appendix\label{app2.1.1a}}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae,
+felis. Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna. Donec
+vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+
+
+\begin{table}[b]%
+\caption{This is an example of Appendix table showing food requirements of army, navy and airforce.\label{tab4}}%
+\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lcc@{\extracolsep\fill}}%
+\toprule
+\textbf{col1 head} & \textbf{col2 head} & \textbf{col3 head} \\
+\midrule
+col1 text & col2 text & col3 text \\
+col1 text & col2 text & col3 text \\
+col1 text & col2 text & col3 text\\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\begin{equation}
+\mathcal{L} = i \bar{\psi} \gamma^\mu D_\mu \psi
+    - \frac{1}{4} F_{\mu\nu}^a F^{a\mu\nu} - m \bar{\psi} \psi
+\label{eq26}
+\end{equation}
+
+Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit
+amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis.
+Nunc elementum fermentum wisi. Lorem ipsum dolor sit
+amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis.
+Nunc elementum fermentum wisi. Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit
+amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis.
+Nunc elementum fermentum wisi. Aenean placerat. Ut imperdiet, enim sed gravida sollicitudin, felis odio placerat
+quam, ac pulvinar elit purus eget enim. Nunc vitae tortor. Proin tempus nibh sit amet nisl. Vivamus quis tortor
+vitae risus porta vehicula.
+
+
+\begin{center}
+\begin{tabular}{@{\extracolsep\fill}lcc@{\extracolsep\fill}}%
+\toprule
+\textbf{col1 head} & \textbf{col2 head} & \textbf{col3 head} \\
+\midrule
+col1 text & col2 text & col3 text \\
+col1 text & col2 text & col3 text \\
+col1 text & col2 text & col3 text \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit
+amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis.
+Nunc elementum fermentum wisi. Aenean placerat. Ut imperdiet, enim sed gravida sollicitudin, felis odio placerat
+quam, ac pulvinar elit purus eget enim. Nunc vitae tortor.  Proin tempus nibh sit amet nisl. Vivamus quis tortor
+vitae risus porta vehicula.
+
+Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac
+venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue
+quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis porttitor. Vestibulum porttitor. Nulla
+facilisi. Sed a turpis eu lacus commodo facilisis. Morbi fringilla, wisi in dignissim interdum, justo lectus sagittis dui, evehicula libero dui cursus dui. Mauris tempor ligula sed lacus. Duis cursus enim ut augue. Cras ac magna. Cras nulla.
+Nulla egestas. Curabitur a leo. Quisque egestas wisi eget nunc. Nam feugiat lacus vel est. Curabitur consectetuer.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec odio elit,
+dictum in, hendrerit sit amet, egestas sed, leo. Praesent feugiat sapien aliquet odio. Integer vitae justo. Aliquam
+vestibulum fringilla lorem. Sed neque lectus, consectetuer at, consectetuer sed, eleifend ac, lectus. Nulla facilisi.
+Pellentesque eget lectus. Proin eu metus. Sed porttitor. In hac habitasse platea dictumst. Suspendisse eu lectus. 
+\nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
+
+
+\end{document}
